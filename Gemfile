@@ -10,6 +10,7 @@ ruby '1.9.3'
 group :development, :test do
 	gem 'sqlite3', '1.3.5'
 	gem 'guard-rspec', '0.5.5'
+	gem 'annotate', '~>2.4.1.beta'
 end
 
 
