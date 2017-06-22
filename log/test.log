@@ -5926,3 +5926,921 @@ Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.0ms)
 
 Started POST "/users" for 127.0.0.1 at 2017-06-22 11:26:16 +0530
   [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('michael@example.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.1ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Thu, 22 Jun 2017 07:21:16 UTC +00:00], ["email", "michael@example.com"], ["name", "Michael Hartl"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$96SbqvvY2x9m2zOvaIIe/OY3SOGIE2nUQQ2fQHHJTWwrlN0RC6VC."], ["updated_at", Thu, 22 Jun 2017 07:21:16 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 12:51:16 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (6.6ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.7ms)
+Completed 200 OK in 126ms (Views: 124.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (1.8ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('michael@example.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 22 Jun 2017 07:21:17 UTC +00:00], ["email", "michael@example.com"], ["name", "Michael Hartl"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$u2qzD2sNN6dfLrR1rFgx8uNW2IvDfX4kcDFjm4XMaIDDnB4lhSqB6"], ["updated_at", Thu, 22 Jun 2017 07:21:17 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 12:51:17 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/signup" for 127.0.0.1 at 2017-06-22 12:51:17 +0530
+Processing by UsersController#new as HTML
+ERROR: compiling _app_views_shared__error_messages_html_erb__3040029414309132385_49136700 RAISED /home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:16: syntax error, unexpected keyword_ensure, expecting ')'
+/home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:18: syntax error, unexpected keyword_end, expecting ')'
+Function body:           def _app_views_shared__error_messages_html_erb__3040029414309132385_49136700(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "shared/_error_messages";_old_output_buffer = @output_buffer;error_messages = local_assigns[:error_messages];;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.append= ( pluralize(@user.errors.count, "error" );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+'); if @user.errors.any? 
+@output_buffer.safe_concat('<div id="error_explanation">
+	<div class="alert alert-error">
+		The form contains ');@output_buffer.append= ( pluralize(@user.errors.count, "error") );@output_buffer.safe_concat('.
+	</div>
+	<ul>
+');		 @user.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('		<li>* ');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');		 end 
+@output_buffer.safe_concat('	</ul>
+</div>
+'); end 
+@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:265:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:238:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:237:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:6:in `block in _app_views_users_new_html_erb___4514738149556680256_46824820'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:606:in `fields_for'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:377:in `form_for'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:5:in `_app_views_users_new_html_erb___4514738149556680256_46824820'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:143:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__2058241684516653152__process_action__1348828520275133566__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/etag.rb:23:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/conditionalget.rb:25:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:210:in `context'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:205:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__3707184106412990190__call__3176515527647297182__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/methodoverride.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/runtime.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/lock.rb:15:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/builder.rb:134:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:64:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/mock_session.rb:30:in `request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:244:in `process_request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:58:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/forwardable.rb:201:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:62:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:21:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/driver.rb:32:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/session.rb:157:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/dsl.rb:161:in `visit'
+/home/pankaj/rails_project/sample_app/spec/requests/user_pages_spec.rb:32:in `block (3 levels) in <top (required)>'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `instance_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `run_in'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `block in run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:368:in `run_hook'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `block in run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:217:in `run_before_each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:79:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:173:in `with_around_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:77:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:355:in `block in run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:337:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/reporter.rb:34:in `report'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:25:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:69:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:10:in `block in autorun'
+  Rendered shared/_error_messages.html.erb (61.7ms)
+Completed 500 Internal Server Error in 70ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/signup" for 127.0.0.1 at 2017-06-22 12:51:17 +0530
+Processing by UsersController#new as HTML
+ERROR: compiling _app_views_shared__error_messages_html_erb__3040029414309132385_49136700 RAISED /home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:16: syntax error, unexpected keyword_ensure, expecting ')'
+/home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:18: syntax error, unexpected keyword_end, expecting ')'
+Function body:           def _app_views_shared__error_messages_html_erb__3040029414309132385_49136700(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "shared/_error_messages";_old_output_buffer = @output_buffer;error_messages = local_assigns[:error_messages];;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.append= ( pluralize(@user.errors.count, "error" );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+'); if @user.errors.any? 
+@output_buffer.safe_concat('<div id="error_explanation">
+	<div class="alert alert-error">
+		The form contains ');@output_buffer.append= ( pluralize(@user.errors.count, "error") );@output_buffer.safe_concat('.
+	</div>
+	<ul>
+');		 @user.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('		<li>* ');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');		 end 
+@output_buffer.safe_concat('	</ul>
+</div>
+'); end 
+@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:265:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:238:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:237:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:6:in `block in _app_views_users_new_html_erb___4514738149556680256_46824820'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:606:in `fields_for'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:377:in `form_for'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:5:in `_app_views_users_new_html_erb___4514738149556680256_46824820'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:143:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__2058241684516653152__process_action__1348828520275133566__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/etag.rb:23:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/conditionalget.rb:25:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:210:in `context'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:205:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__3707184106412990190__call__3176515527647297182__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/methodoverride.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/runtime.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/lock.rb:15:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/builder.rb:134:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:64:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/mock_session.rb:30:in `request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:244:in `process_request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:58:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/forwardable.rb:201:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:62:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:21:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/driver.rb:32:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/session.rb:157:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/dsl.rb:161:in `visit'
+/home/pankaj/rails_project/sample_app/spec/requests/user_pages_spec.rb:32:in `block (3 levels) in <top (required)>'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `instance_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `run_in'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `block in run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:368:in `run_hook'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `block in run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:217:in `run_before_each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:79:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:173:in `with_around_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:77:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:355:in `block in run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:337:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/reporter.rb:34:in `report'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:25:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:69:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:10:in `block in autorun'
+  Rendered shared/_error_messages.html.erb (0.6ms)
+Completed 500 Internal Server Error in 3ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('michael@example.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (5.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Thu, 22 Jun 2017 07:21:48 UTC +00:00], ["email", "michael@example.com"], ["name", "Michael Hartl"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$Nc.2FkBBB0FD/.WXGOPm.O5uQeg8yzmYoxzvVqt5y92zng85BDSju"], ["updated_at", Thu, 22 Jun 2017 07:21:48 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 12:51:49 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.5ms)
+Completed 200 OK in 121ms (Views: 120.0ms | ActiveRecord: 0.1ms)
+  [1m[36m (5.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('michael@example.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 22 Jun 2017 07:21:49 UTC +00:00], ["email", "michael@example.com"], ["name", "Michael Hartl"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$M/EsrFAGwmH7YMCfTjI0muPZciQcM430ZSMR/6rqhifwXxpObk.ie"], ["updated_at", Thu, 22 Jun 2017 07:21:49 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 12:51:49 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (4.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/signup" for 127.0.0.1 at 2017-06-22 12:51:49 +0530
+Processing by UsersController#new as HTML
+ERROR: compiling _app_views_shared__error_messages_html_erb___3030602661053270669_47523700 RAISED /home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:16: syntax error, unexpected keyword_ensure, expecting ')'
+/home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:18: syntax error, unexpected keyword_end, expecting ')'
+Function body:           def _app_views_shared__error_messages_html_erb___3030602661053270669_47523700(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "shared/_error_messages";_old_output_buffer = @output_buffer;error_messages = local_assigns[:error_messages];;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.append= ( pluralize(@user.errors.count, "error" );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+'); if @user.errors.any? 
+@output_buffer.safe_concat('<div id="error_explanation">
+	<div class="alert alert-error">
+		The form contains ');@output_buffer.append= ( pluralize(@user.errors.count, "error") );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('	</div>
+	<ul>
+');		 @user.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('		<li>* ');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');		 end 
+@output_buffer.safe_concat('	</ul>
+</div>
+'); end 
+@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:265:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:238:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:237:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:6:in `block in _app_views_users_new_html_erb__3531264670363559983_46764740'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:606:in `fields_for'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:377:in `form_for'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:5:in `_app_views_users_new_html_erb__3531264670363559983_46764740'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:143:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__34289330617965781__process_action__1941954392823324007__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/etag.rb:23:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/conditionalget.rb:25:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:210:in `context'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:205:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__322707146672437329__call__1698604967185012781__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/methodoverride.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/runtime.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/lock.rb:15:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/builder.rb:134:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:64:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/mock_session.rb:30:in `request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:244:in `process_request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:58:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/forwardable.rb:201:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:62:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:21:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/driver.rb:32:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/session.rb:157:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/dsl.rb:161:in `visit'
+/home/pankaj/rails_project/sample_app/spec/requests/user_pages_spec.rb:32:in `block (3 levels) in <top (required)>'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `instance_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `run_in'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `block in run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:368:in `run_hook'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `block in run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:217:in `run_before_each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:79:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:173:in `with_around_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:77:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:355:in `block in run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:337:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/reporter.rb:34:in `report'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:25:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:69:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:10:in `block in autorun'
+  Rendered shared/_error_messages.html.erb (62.9ms)
+Completed 500 Internal Server Error in 71ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/signup" for 127.0.0.1 at 2017-06-22 12:51:49 +0530
+Processing by UsersController#new as HTML
+ERROR: compiling _app_views_shared__error_messages_html_erb___3030602661053270669_47523700 RAISED /home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:16: syntax error, unexpected keyword_ensure, expecting ')'
+/home/pankaj/rails_project/sample_app/app/views/shared/_error_messages.html.erb:18: syntax error, unexpected keyword_end, expecting ')'
+Function body:           def _app_views_shared__error_messages_html_erb___3030602661053270669_47523700(local_assigns, output_buffer)
+            _old_virtual_path, @virtual_path = @virtual_path, "shared/_error_messages";_old_output_buffer = @output_buffer;error_messages = local_assigns[:error_messages];;@output_buffer = output_buffer || ActionView::OutputBuffer.new;@output_buffer.append= ( pluralize(@user.errors.count, "error" );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('
+'); if @user.errors.any? 
+@output_buffer.safe_concat('<div id="error_explanation">
+	<div class="alert alert-error">
+		The form contains ');@output_buffer.append= ( pluralize(@user.errors.count, "error") );@output_buffer.safe_concat('
+');@output_buffer.safe_concat('	</div>
+	<ul>
+');		 @user.errors.full_messages.each do |msg| 
+@output_buffer.safe_concat('		<li>* ');@output_buffer.append= ( msg );@output_buffer.safe_concat('</li>
+');		 end 
+@output_buffer.safe_concat('	</ul>
+</div>
+'); end 
+@output_buffer.to_s
+          ensure
+            @virtual_path, @output_buffer = _old_virtual_path, _old_output_buffer
+          end
+
+Backtrace: /home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `module_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:285:in `compile'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:233:in `compile!'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:142:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:265:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:238:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/partial_renderer.rb:237:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:41:in `render_partial'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/rendering_helper.rb:27:in `render'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:6:in `block in _app_views_users_new_html_erb__3531264670363559983_46764740'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `block in capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:187:in `with_output_buffer'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/capture_helper.rb:40:in `capture'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:606:in `fields_for'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/helpers/form_helper.rb:377:in `form_for'
+/home/pankaj/rails_project/sample_app/app/views/users/new.html.erb:5:in `_app_views_users_new_html_erb__3531264670363559983_46764740'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:143:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/template.rb:141:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:47:in `block (2 levels) in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:46:in `block in render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:54:in `render_with_layout'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:45:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/template_renderer.rb:18:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:36:in `render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_view/renderer/renderer.rb:17:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:110:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/streaming.rb:225:in `_render_template'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:103:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/renderers.rb:28:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/compatibility.rb:50:in `render_to_body'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:88:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:16:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block (2 levels) in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `block in ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/benchmark.rb:295:in `realtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/core_ext/benchmark.rb:5:in `ms'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:40:in `block in render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:83:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:24:in `cleanup_view_runtime'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:39:in `render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:167:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rendering.rb:10:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:18:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:414:in `_run__34289330617965781__process_action__1941954392823324007__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_process_action_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/callbacks.rb:17:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rescue.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:30:in `block in process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `block in instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/notifications.rb:123:in `instrument'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/instrumentation.rb:29:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/params_wrapper.rb:205:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/base.rb:121:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/abstract_controller/rendering.rb:45:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:203:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal/rack_delegation.rb:14:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_controller/metal.rb:246:in `block in action'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:73:in `dispatch'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:36:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:68:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/journey-1.0.4/lib/journey/router.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/routing/route_set.rb:600:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/etag.rb:23:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/conditionalget.rb:25:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/flash.rb:242:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:210:in `context'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/session/abstract/id.rb:205:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/cookies.rb:338:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/query_cache.rb:64:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activerecord-3.2.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:467:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `_run__322707146672437329__call__1698604967185012781__callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:405:in `__run_callback'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/callbacks.rb:81:in `run_callbacks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:26:in `call_app'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/rack/logger.rb:16:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/request_id.rb:22:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/methodoverride.rb:21:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/runtime.rb:17:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/activesupport-3.2.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/lock.rb:15:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/actionpack-3.2.3/lib/action_dispatch/middleware/static.rb:62:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/engine.rb:479:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/railties-3.2.3/lib/rails/application.rb:220:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/builder.rb:134:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:64:in `block in call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-1.4.7/lib/rack/urlmap.rb:49:in `call'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/mock_session.rb:30:in `request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:244:in `process_request'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rack-test-0.6.3/lib/rack/test.rb:58:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/1.9.1/forwardable.rb:201:in `get'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:62:in `process'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/browser.rb:21:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/rack_test/driver.rb:32:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/session.rb:157:in `visit'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/capybara-1.1.2/lib/capybara/dsl.rb:161:in `visit'
+/home/pankaj/rails_project/sample_app/spec/requests/user_pages_spec.rb:32:in `block (3 levels) in <top (required)>'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `instance_eval'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:35:in `run_in'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `block in run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:70:in `run_all'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/hooks.rb:368:in `run_hook'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `block in run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:292:in `run_before_each_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:217:in `run_before_each'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:79:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:173:in `with_around_hooks'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example.rb:77:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:355:in `block in run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:351:in `run_examples'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:337:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/example_group.rb:338:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block (2 levels) in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `map'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:28:in `block in run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/reporter.rb:34:in `report'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/command_line.rb:25:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:69:in `run'
+/home/pankaj/.rbenv/versions/1.9.3-p551/lib/ruby/gems/1.9.1/gems/rspec-core-2.9.0/lib/rspec/core/runner.rb:10:in `block in autorun'
+  Rendered shared/_error_messages.html.erb (0.6ms)
+Completed 500 Internal Server Error in 2ms
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (4.1ms)[0m  [1mSELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('michael@example.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (3.2ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Thu, 22 Jun 2017 07:25:34 UTC +00:00], ["email", "michael@example.com"], ["name", "Michael Hartl"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$a0gACIRRqxR97QMiq39ol.IPzYXFaX4.Gmymt9MQREnSfUwWRziP2"], ["updated_at", Thu, 22 Jun 2017 07:25:34 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 12:55:35 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  Rendered users/show.html.erb within layouts/application (6.6ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (0.8ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 125ms (Views: 122.7ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('michael@example.com') LIMIT 1
+Binary data inserted for `string` type on column `password_digest`
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["created_at", Thu, 22 Jun 2017 07:25:35 UTC +00:00], ["email", "michael@example.com"], ["name", "Michael Hartl"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$OS84CDOMJhv9eLfZuJbG3.Ucosq23mRRjMKK2q0J49OfoJBw.c.gK"], ["updated_at", Thu, 22 Jun 2017 07:25:35 UTC +00:00]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+
+
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 12:55:35 +0530
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+
+
+Started GET "/signup" for 127.0.0.1 at 2017-06-22 12:55:35 +0530
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.3ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 24ms (Views: 23.8ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+
+
+Started POST "/users" for 127.0.0.1 at 2017-06-22 12:55:35 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('') LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered shared/_error_messages.html.erb (2.6ms)
+  Rendered layouts/_shim.html.erb (0.1ms)
+  Rendered layouts/_header.html.erb (0.6ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 66ms (Views: 57.5ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users" 
+  [1m[36m (0.0ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+
+
+Started GET "/signup" for 127.0.0.1 at 2017-06-22 12:55:35 +0530
+Processing by UsersController#new as HTML
+  Rendered shared/_error_messages.html.erb (0.0ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  Rendered layouts/_header.html.erb (0.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 8ms (Views: 8.1ms | ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" [0m
+
+
+Started POST "/users" for 127.0.0.1 at 2017-06-22 12:55:35 +0530
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"Example User", "email"=>"user@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT 1 FROM "users" WHERE LOWER("users"."email") = LOWER('user@example.com') LIMIT 1[0m
+Binary data inserted for `string` type on column `password_digest`
+  [1m[35mSQL (4.9ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "password", "password_confirmation", "password_digest", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["created_at", Thu, 22 Jun 2017 07:25:35 UTC +00:00], ["email", "user@example.com"], ["name", "Example User"], ["password", nil], ["password_confirmation", nil], ["password_digest", "$2a$04$Jz84FD82CCXwymOOrSg4TO0Ya9F1dRy1IAxEZ3mOad/HNoHhmW8c."], ["updated_at", Thu, 22 Jun 2017 07:25:35 UTC +00:00]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Completed 500 Internal Server Error in 70ms
+  [1m[35m (0.2ms)[0m  rollback transaction
